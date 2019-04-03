@@ -1,0 +1,21 @@
+{
+  "name": "u2ftest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "yarn run setup:root && yarn run setup:client && yarn run setup:server",
+    "setup:root": "yarn",
+    "setup:client": "cd client && yarn",
+    "setup:server": "cd server && yarn",
+    "dev": "concurrently --kill-others \"yarn run dev:server\" \"yarn run dev:web\"",
+    "dev:server": "cd server && node index.js",
+    "dev:web": "cd client && HTTPS=true yarn start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
