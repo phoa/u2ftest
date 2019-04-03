@@ -53,7 +53,7 @@ app.post('/registrationVerification', registrationVerificationHandler);
 
 app.get('/auth', authenticationChallengeHandler);
 
-app.get('/authVerification', authenticationVerificationHandler);
+app.post('/authVerification', authenticationVerificationHandler);
 
 // Create an HTTP service.
 // http.createServer(app).listen(httpPort, () => {
