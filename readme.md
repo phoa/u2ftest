@@ -14,6 +14,14 @@ You should see `node_modules` in three locations:
 - `client` directory
 - `server` directory
 
+### Setup Web Only
+
+To setup only the front-end part of this project, run the following command from project root folder.
+
+```bash
+yarn run setup:client
+```
+
 ## Run Development Server
 
 The command below will run two servers, local web server and u2f nodejs server.
@@ -29,6 +37,14 @@ u2f nodejs server will be running on port `6060`.
 Open your chrome browser and go to `https://localhost:3000`.
 
 In case you need to use another u2f server, update the `Server` address.
+
+### Run Web Dev Server Only
+
+To run only the front end server, run the following command from project root folder.
+
+```bash
+yarn run dev:web
+```
 
 ## Update `AppId`
 
