@@ -46,6 +46,16 @@ To run only the front end server, run the following command from project root fo
 yarn run dev:web
 ```
 
+## URL Points
+
+https://localhost:6060/registration - initial request from client to get `version`, `appId`, `challenge`.
+
+https://localhost:6060/registrationVerification - request from client to register device.
+
+https://localhost:6060/auth - initial request from client to get `version`, `appId`, `challenge`.
+
+https://localhost:6060/authVerification - request from client to authenticate device
+
 ## Update `AppId`
 
 `AppId` by default is set to `https://localhost:6060`.
