@@ -6,7 +6,7 @@ const https = require('https');
 const http = require('http');
 const fs = require('fs');
 const httpPort = 6080;
-const httpsPort = 6060;
+const httpsPort = 443;
 
 const options = {
   key: fs.readFileSync('key.pem'),
