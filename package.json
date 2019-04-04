@@ -15,7 +15,7 @@
     "dev:server": "cd server && node index.js",
     "dev:web": "cd client && HTTPS=true yarn start",
     "heroku-postbuild": "yarn run setup:server",
-    "start": "yarn run dev:server"
+    "start": "node server/index.js"
   },
   "keywords": [],
   "author": "",
