@@ -38,7 +38,9 @@ app.use(function(req, res, next) {
 // The app ID is a string used to uniquely identify your U2F app, for both registration requests and
 // authentication requests. It is usually the fully qualified URL of your website. The website MUST
 // be HTTPS, otherwise the registration will fail client-side.
-const APP_ID = 'https://localhost:' + httpsPort;
+// const APP_ID = 'https://localhost:' + httpsPort;
+const APP_ID = 'https://agile-meadow-14174.herokuapp.com';
+
 console.log('APP_ID: ' + APP_ID);
 
 const USER_DATA = {};
