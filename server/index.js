@@ -63,7 +63,7 @@ app.post('/authVerification', authenticationVerificationHandler);
 // });
 
 // Create an HTTPS service identical to the HTTP service.
-https.createServer(app).listen(httpsPort, () => {
+app.listen(httpsPort, () => {
   console.log(`Example app listening on https port ${httpsPort}!`);
 });
 
