@@ -8,10 +8,10 @@ const fs = require('fs');
 const httpPort = 6080;
 const httpsPort = 443;
 
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
+// const options = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem')
+// };
 
 const app = express();
 
@@ -63,7 +63,7 @@ app.post('/authVerification', authenticationVerificationHandler);
 // });
 
 // Create an HTTPS service identical to the HTTP service.
-https.createServer(options, app).listen(httpsPort, () => {
+https.createServer(app).listen(httpsPort, () => {
   console.log(`Example app listening on https port ${httpsPort}!`);
 });
 
