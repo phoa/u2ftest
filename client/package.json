@@ -2,6 +2,9 @@
   "name": "u2ftestclient",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.15.0"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.8.6",

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "10.15.0"
+  },
   "scripts": {
     "setup": "yarn run setup:root && yarn run setup:client && yarn run setup:server",
     "setup:root": "yarn",
