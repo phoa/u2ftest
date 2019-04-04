@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "u2ftestclient",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
