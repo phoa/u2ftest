@@ -14,7 +14,8 @@
     "dev": "concurrently --kill-others \"yarn run dev:server\" \"yarn run dev:web\"",
     "dev:server": "cd server && node index.js",
     "dev:web": "cd client && HTTPS=true yarn start",
-    "heroku-postbuild": "yarn run setup:server"
+    "heroku-postbuild": "yarn run setup:server",
+    "start": "yarn run dev:server"
   },
   "keywords": [],
   "author": "",
