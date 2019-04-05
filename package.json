@@ -9,8 +9,10 @@
     "setup:client": "cd client && yarn",
     "setup:server": "cd server && yarn",
     "dev": "concurrently --kill-others \"yarn run dev:server\" \"yarn run dev:web\"",
+    "dev:windows": "concurrently --kill-others \"yarn run dev:server\" \"yarn run dev:webwindows\"",
     "dev:server": "cd server && node index.js",
-    "dev:web": "cd client && HTTPS=true yarn start"
+    "dev:web": "cd client && HTTPS=true yarn start",
+    "dev:webwindows": "cd client && set HTTPS=true&&yarn start"
   },
   "keywords": [],
   "author": "",
