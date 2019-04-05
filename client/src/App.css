@@ -65,9 +65,26 @@
   padding-left: 0.25em;
 }
 
+.response-section {
+  margin-bottom: 1em;
+}
+
 .response-value {
   word-break: break-all;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
   padding-right: 2em;
+  padding-left: 0.5em;
+}
+
+.response-value.response-ok {
+  background: #0c86a3;
+  color: white;
+}
+
+.response-value.response-error {
+  background: #a22857;
+  color: white;
 }
 
 label {

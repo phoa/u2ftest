@@ -198,6 +198,23 @@ class Register extends Component {
       registrationVerificationError,
       registrationVerificationResponse
     } = this.state;
+
+    let registrationRespClass = ['response-value'];
+    if (registerError === true) {
+      registrationRespClass.push('response-error');
+    } else if (registerError === false) {
+      registrationRespClass.push('response-ok');
+    }
+    registrationRespClass = registrationRespClass.join(' ');
+
+    let registrationVerRespClass = ['response-value'];
+    if (registrationVerificationError === true) {
+      registrationVerRespClass.push('response-error');
+    } else if (registrationVerificationError === false) {
+      registrationVerRespClass.push('response-ok');
+    }
+    registrationVerRespClass = registrationVerRespClass.join(' ');
+
     return (
       <div className="register-block">
         <div className="button-wrapper">
@@ -205,7 +222,7 @@ class Register extends Component {
         </div>
         <div className="response-section">
           <div className="response-label">Registration Response:</div>
-          <div className="response-value">
+          <div className={registrationRespClass}>
             {registerError !== null
               ? registerError
                 ? `ERROR - ${JSON.stringify(registerResponse)}`
@@ -215,7 +232,7 @@ class Register extends Component {
         </div>
         <div className="response-section">
           <div className="response-label">Registration Verification:</div>
-          <div className="response-value">
+          <div className={registrationVerRespClass}>
             {registrationVerificationError !== null
               ? registrationVerificationError
                 ? `ERROR - ${JSON.stringify(registrationVerificationResponse)}`
@@ -317,6 +334,23 @@ class Auth extends Component {
       authVerificationError,
       authVerificationResponse
     } = this.state;
+
+    let authRespClass = ['response-value'];
+    if (authError === true) {
+      authRespClass.push('response-error');
+    } else if (authError === false) {
+      authRespClass.push('response-ok');
+    }
+    authRespClass = authRespClass.join(' ');
+
+    let authVerRespClass = ['response-value'];
+    if (authVerificationError === true) {
+      authVerRespClass.push('response-error');
+    } else if (authVerificationError === false) {
+      authVerRespClass.push('response-ok');
+    }
+    authVerRespClass = authVerRespClass.join(' ');
+
     return (
       <div className="auth-block">
         <div className="button-wrapper">
@@ -324,7 +358,7 @@ class Auth extends Component {
         </div>
         <div className="response-section">
           <div className="response-label">Auth Response:</div>
-          <div className="response-value">
+          <div className={authRespClass}>
             {authError !== null
               ? authError
                 ? `ERROR - ${JSON.stringify(authResponse)}`
@@ -334,7 +368,7 @@ class Auth extends Component {
         </div>
         <div className="response-section">
           <div className="response-label">Auth Verification:</div>
-          <div className="response-value">
+          <div className={authVerRespClass}>
             {authVerificationError !== null
               ? authVerificationError
                 ? `ERROR - ${JSON.stringify(authVerificationResponse)}`
