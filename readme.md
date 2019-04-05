@@ -2,7 +2,15 @@
 
 ## Setup
 
-To install dependencies, run the following from project root folder.
+NodeJS is needed to run this project.
+
+Assuming NodeJS has been setup, install `yarn` if it is not installed.
+
+```bash
+npm install -g yarn
+```
+
+To install project dependencies, run the following from project root folder.
 
 ```bash
 yarn run setup
@@ -22,11 +30,15 @@ To setup only the front-end part of this project, run the following command from
 yarn run setup:client
 ```
 
-## Run Development Server
+## Run Development Server (Both Web Server and NodeJS Backend Server)
 
 The command below will run two servers, local web server and u2f nodejs server.
 
 ```bash
+# on windows
+yarn run dev:windows
+
+# on mac
 yarn run dev
 ```
 
@@ -43,6 +55,11 @@ In case you need to use another u2f server, update the `Server` address.
 To run only the front end server, run the following command from project root folder.
 
 ```bash
+
+# on windows
+yarn run dev:webwindows
+
+# on mac
 yarn run dev:web
 ```
 
