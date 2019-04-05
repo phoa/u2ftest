@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  margin: 5em 0;
+  font-size: 1em;
 }
 
 .App-logo {
@@ -23,10 +25,81 @@
   color: #61dafb;
 }
 
+.setup-component {
+  margin-bottom: 2em;
+}
+
+.register-block {
+  margin-bottom: 2em;
+}
+
+.button-wrapper {
+  margin-bottom: 0.75em;
+}
+
+.response-section {
+  margin-bottom: 0.5em;
+}
+
+.section-title {
+  margin-bottom: 1em;
+}
+
+.field-wrapper,
+.response-section {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.label-wrapper,
+.response-label {
+  text-align: right;
+  padding-right: 0.25em;
+}
+
+.input-wrapper,
+.response-value {
+  text-align: left;
+  padding-left: 0.25em;
+}
+
+.response-value {
+  word-break: break-all;
+  padding-right: 2em;
+}
+
+label {
+  font-size: 1em;
+}
+
+input[type="text"] {
+  font-size: 1em;
+  width: calc(100% - 10em);
+  min-width: 5em;
+  padding: 0.25em;
+}
+
+button {
+  font-size: 1.5em;
+  display: inline-block;
+  border-radius: 0.1em;
+  background: #ff6f61;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0.5em 0;
+  width: 5em;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

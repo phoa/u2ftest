@@ -10,18 +10,100 @@ import axios from 'axios';
 import u2fApi from 'u2f-api';
 import './App.css';
 
+function urlGen(server, endPoint) {
+  if (server && endPoint) {
+    if (endPoint.indexOf('https://') > -1) {
+      return endPoint;
+    }
+    return [server, endPoint].join('/');
+  }
+  return null;
+}
+
 function SetupComponent(props) {
-  const { serverAddress, onServerAddressChange } = props;
+  const {
+    serverAddress,
+    registrationUrl,
+    registrationVerificationUrl,
+    authUrl,
+    authVerificationUrl,
+    onServerAddressChange,
+    onRegistrationUrlChange,
+    onRegistrationVerificationUrlChange,
+    onAuthUrlChange,
+    onAuthVerificationUrlChange
+  } = props;
   return (
     <div className="setup-component">
+      <div className="section-title">Endpoints Setup</div>
       <div className="field-wrapper">
-        <label htmlFor="hostname-input">Server: </label>
-        <input
-          id="hostname-input"
-          type="text"
-          value={serverAddress}
-          onChange={onServerAddressChange}
-        />
+        <div className="label-wrapper">
+          <label htmlFor="hostname-input">Server: </label>
+        </div>
+        <div className="input-wrapper">
+          <input
+            id="hostname-input"
+            type="text"
+            value={serverAddress}
+            onChange={onServerAddressChange}
+          />
+        </div>
+      </div>
+      <div className="field-wrapper">
+        <div className="label-wrapper">
+          <label htmlFor="registration-url-input">Registration Url:</label>
+        </div>
+        <div className="input-wrapper">
+          <input
+            id="registration-url-input"
+            type="text"
+            value={registrationUrl}
+            onChange={onRegistrationUrlChange}
+          />
+        </div>
+      </div>
+      <div className="field-wrapper">
+        <div className="label-wrapper">
+          <label htmlFor="registration-verification-url-input">
+            Registration Verification Url:
+          </label>
+        </div>
+        <div className="input-wrapper">
+          <input
+            id="registration-verification-url-input"
+            type="text"
+            value={registrationVerificationUrl}
+            onChange={onRegistrationVerificationUrlChange}
+          />
+        </div>
+      </div>
+      <div className="field-wrapper">
+        <div className="label-wrapper">
+          <label htmlFor="auth-url-input">Auth Url: </label>
+        </div>
+        <div className="input-wrapper">
+          <input
+            id="auth-url-input"
+            type="text"
+            value={authUrl}
+            onChange={onAuthUrlChange}
+          />
+        </div>
+      </div>
+      <div className="field-wrapper">
+        <div className="label-wrapper">
+          <label htmlFor="auth-verification-url-input">
+            Auth Verification Url:{' '}
+          </label>
+        </div>
+        <div className="input-wrapper">
+          <input
+            id="auth-verification-url-input"
+            type="text"
+            value={authVerificationUrl}
+            onChange={onAuthVerificationUrlChange}
+          />
+        </div>
       </div>
     </div>
   );
@@ -43,8 +125,9 @@ class Register extends Component {
   }
 
   _registerHandler() {
-    const { serverAddress } = this.props;
-    const url = `${serverAddress}/registration`;
+    const { serverAddress, registrationUrl } = this.props;
+    const url = urlGen(serverAddress, registrationUrl);
+
     axios
       .get(url)
       .then(response => {
@@ -70,8 +153,9 @@ class Register extends Component {
 
   _u2fRegister() {
     const { registerResponse } = this.state;
-    const { serverAddress } = this.props;
-    const url = `${serverAddress}/registrationVerification`;
+    const { serverAddress, registrationVerificationUrl } = this.props;
+    const url = urlGen(serverAddress, registrationVerificationUrl);
+
     console.log('_u2fRegister registerResponse: ', registerResponse);
 
     u2fApi
@@ -116,28 +200,28 @@ class Register extends Component {
     } = this.state;
     return (
       <div className="register-block">
-        <div className="register-button-wrapper">
+        <div className="button-wrapper">
           <button onClick={this._registerHandler}>Register</button>
         </div>
-        <div className="register-response">
-          Registration Response:{' '}
-          {registerError !== null && (
-            <span>
-              {registerError
+        <div className="response-section">
+          <div className="response-label">Registration Response:</div>
+          <div className="response-value">
+            {registerError !== null
+              ? registerError
                 ? `ERROR - ${JSON.stringify(registerResponse)}`
-                : `OK - ${JSON.stringify(registerResponse)}`}
-            </span>
-          )}
+                : `OK - ${JSON.stringify(registerResponse)}`
+              : null}
+          </div>
         </div>
-        <div className="register-verification-response">
-          Registration Verification: {}
-          {registrationVerificationError !== null && (
-            <span>
-              {registrationVerificationError
+        <div className="response-section">
+          <div className="response-label">Registration Verification:</div>
+          <div className="response-value">
+            {registrationVerificationError !== null
+              ? registrationVerificationError
                 ? `ERROR - ${JSON.stringify(registrationVerificationResponse)}`
-                : `OK - ${JSON.stringify(registrationVerificationResponse)}`}
-            </span>
-          )}
+                : `OK - ${JSON.stringify(registrationVerificationResponse)}`
+              : null}
+          </div>
         </div>
       </div>
     );
@@ -160,8 +244,9 @@ class Auth extends Component {
   }
 
   _authHandler() {
-    const { serverAddress } = this.props;
-    const url = `${serverAddress}/auth`;
+    const { serverAddress, authUrl } = this.props;
+    const url = urlGen(serverAddress, authUrl);
+
     axios
       .get(url)
       .then(response => {
@@ -187,8 +272,9 @@ class Auth extends Component {
 
   _u2fAuth() {
     const { authResponse } = this.state;
-    const { serverAddress } = this.props;
-    const url = `${serverAddress}/authVerification`;
+    const { serverAddress, authVerificationUrl } = this.props;
+    const url = urlGen(serverAddress, authVerificationUrl);
+
     console.log('_u2fRegister authResponse: ', authResponse);
 
     u2fApi
@@ -233,28 +319,28 @@ class Auth extends Component {
     } = this.state;
     return (
       <div className="auth-block">
-        <div className="sogm-button-wrapper">
+        <div className="button-wrapper">
           <button onClick={this._authHandler}>Auth</button>
         </div>
-        <div className="auth-response">
-          Auth Response:{' '}
-          {authError !== null && (
-            <span>
-              {authError
+        <div className="response-section">
+          <div className="response-label">Auth Response:</div>
+          <div className="response-value">
+            {authError !== null
+              ? authError
                 ? `ERROR - ${JSON.stringify(authResponse)}`
-                : `OK - ${JSON.stringify(authResponse)}`}
-            </span>
-          )}
+                : `OK - ${JSON.stringify(authResponse)}`
+              : null}
+          </div>
         </div>
-        <div className="register-verification-response">
-          Auth Verification: {}
-          {authVerificationError !== null && (
-            <span>
-              {authVerificationError
+        <div className="response-section">
+          <div className="response-label">Auth Verification:</div>
+          <div className="response-value">
+            {authVerificationError !== null
+              ? authVerificationError
                 ? `ERROR - ${JSON.stringify(authVerificationResponse)}`
-                : `OK - ${JSON.stringify(authVerificationResponse)}`}
-            </span>
-          )}
+                : `OK - ${JSON.stringify(authVerificationResponse)}`
+              : null}
+          </div>
         </div>
       </div>
     );
@@ -266,9 +352,21 @@ class App extends Component {
     super(props);
 
     this._onServerAddressChange = this._onServerAddressChange.bind(this);
+    this._onRegistrationUrlChange = this._onRegistrationUrlChange.bind(this);
+    this._onRegistrationVerificationUrlChange = this._onRegistrationVerificationUrlChange.bind(
+      this
+    );
+    this._onAuthUrlChange = this._onAuthUrlChange.bind(this);
+    this._onAuthVerificationUrlChange = this._onAuthVerificationUrlChange.bind(
+      this
+    );
 
     this.state = {
-      serverAddress: 'https://localhost:6060'
+      serverAddress: 'https://localhost:6060',
+      registrationUrl: 'https://localhost:6060/registration',
+      registrationVerificationUrl: 'https://localhost:6060/registration',
+      authUrl: 'https://localhost:6060/auth',
+      authVerificationUrl: 'https://localhost:6060/authVerification'
     };
   }
 
@@ -278,16 +376,64 @@ class App extends Component {
     });
   }
 
+  _onRegistrationUrlChange(event) {
+    this.setState({
+      registrationUrl: event.target.value
+    });
+  }
+
+  _onRegistrationVerificationUrlChange(event) {
+    this.setState({
+      registrationVerificationUrl: event.target.value
+    });
+  }
+
+  _onAuthUrlChange(event) {
+    this.setState({
+      authUrl: event.target.value
+    });
+  }
+
+  _onAuthVerificationUrlChange(event) {
+    this.setState({
+      authVerificationUrl: event.target.value
+    });
+  }
+
   render() {
-    const { serverAddress } = this.state;
+    const {
+      serverAddress,
+      registrationUrl,
+      registrationVerificationUrl,
+      authUrl,
+      authVerificationUrl
+    } = this.state;
     return (
       <div className="App">
         <SetupComponent
           serverAddress={serverAddress}
+          registrationUrl={registrationUrl}
+          registrationVerificationUrl={registrationVerificationUrl}
+          authUrl={authUrl}
+          authVerificationUrl={authVerificationUrl}
           onServerAddressChange={this._onServerAddressChange}
+          onRegistrationUrlChange={this._onRegistrationUrlChange}
+          onRegistrationVerificationUrlChange={
+            this._onRegistrationVerificationUrlChange
+          }
+          onAuthUrlChange={this._onAuthUrlChange}
+          onAuthVerificationUrlChange={this._onAuthVerificationUrlChange}
         />
-        <Register serverAddress={serverAddress} />
-        <Auth serverAddress={serverAddress} />
+        <Register
+          serverAddress={serverAddress}
+          registrationUrl={registrationUrl}
+          registrationVerificationUrl={registrationVerificationUrl}
+        />
+        <Auth
+          serverAddress={serverAddress}
+          authUrl={authUrl}
+          authVerificationUrl={authVerificationUrl}
+        />
       </div>
     );
   }
