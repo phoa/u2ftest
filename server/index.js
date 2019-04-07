@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 // authentication requests. It is usually the fully qualified URL of your website. The website MUST
 // be HTTPS, otherwise the registration will fail client-side.
 // const APP_ID = 'https://localhost:' + httpsPort;
-const APP_ID = 'https://boring-roentgen-f1a1f8.netlify.com/';
+const APP_ID = 'https://boring-roentgen-f1a1f8.netlify.com';
 
 console.log('APP_ID: ' + APP_ID);
 
