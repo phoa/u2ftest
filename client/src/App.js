@@ -165,7 +165,7 @@ class Register extends Component {
         axios({
           method: 'post',
           url: url,
-          data: deviceResponse
+          data: { registrationResponse: deviceResponse }
         })
           .then(response => {
             console.log('registrationVerification response: ', response);
@@ -301,7 +301,7 @@ class Auth extends Component {
         axios({
           method: 'post',
           url: url,
-          data: deviceResponse
+          data: { authResponse: deviceResponse }
         })
           .then(response => {
             console.log('authVerification response: ', response);
