@@ -396,12 +396,11 @@ class App extends Component {
     );
 
     this.state = {
-      serverAddress: 'https://localhost:6060',
-      registrationUrl: 'https://localhost:6060/registration',
-      registrationVerificationUrl:
-        'https://localhost:6060/registrationVerification',
-      authUrl: 'https://localhost:6060/auth',
-      authVerificationUrl: 'https://localhost:6060/authVerification'
+      serverAddress: 'https://agile-meadow-14174.herokuapp.com',
+      registrationUrl: 'registration',
+      registrationVerificationUrl: 'registrationVerification',
+      authUrl: 'auth',
+      authVerificationUrl: 'authVerification'
     };
   }
 
