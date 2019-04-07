@@ -75,7 +75,7 @@ class Register extends Component {
     console.log('_u2fRegister registerResponse: ', registerResponse);
 
     u2fApi
-      .register(registerResponse)
+      .register(registerResponse.appId, [registerResponse], [])
       .then(deviceResponse => {
         console.log('_u2fRegister deviceResponse: ', deviceResponse);
         axios({
